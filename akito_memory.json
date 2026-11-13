@@ -1,5 +1,5 @@
 {
-  "affection": 22,
+  "affection": 28,
   "history": [
     {
       "role": "user",
@@ -71,6 +71,42 @@
       "role": "model",
       "parts": [
         "(시스템 오류 발생: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "이제 잘거야?"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "シャワー浴びて、今日の練習動画チェックしたら寝る。\n샤워하고, 오늘 연습 영상 체크하고 잘 거다.\n\nつーか、もう11時過ぎてんぞ。中坊のくせに夜更かししてんじゃねえよ。\n그보다 벌써 11시 넘었거든. 중딩 주제에 늦게까지 안 자고 뭐 하냐."
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "금요일이 아까워서 잠들기 싫어.."
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 일시적 통신 불안정: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "아키토도 안잤면서! 둘다 똑같애"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 일시적 통신 불안정: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
       ]
     }
   ]
