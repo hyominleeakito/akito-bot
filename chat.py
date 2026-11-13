@@ -3,13 +3,15 @@ import json
 import time
 from datetime import datetime
 import telebot
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 # 1. 여기에 본인의 구글 API 키와 텔레그램 봇 토큰을 넣어주세요!
 GOOGLE_API_KEY = "AQ.Ab8RN6JymmKOZxpLyA4aT2iIMdHCkQldS1trtTcb-CYMgMeoBg"
-TELEGRAM_TOKEN = "8805582307:AAFJzETKsE32VRWY1r-yrD1BI7PCVZ95iKY"
+TELEGRAM_TOKEN = "8805582307:AAFJzETKsE32VRWY1r-yrD1BI7PCVZ95iKY
+"
 
-genai.configure(api_key=GOOGLE_API_KEY)
+client = genai.Client(api_key=GOOGLE_API_KEY)
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 
 MEMORY_FILE = "akito_memory.json"
@@ -89,21 +91,31 @@ def handle_message(message):
 
     current_instruction = get_system_instruction(time_str, holiday_note, memory["affection"])
     
-    # 구버전 라이브러리 완벽 호환 모델 호출 방식
-    model = genai.GenerativeModel(
-        model_name="gemini-pro",
-        system_instruction=current_instruction
-    )
-    
-    # 최근 30개의 대화 기록만 불러와서 기억 유지
-    recent_history = memory["history"][-30:]
-    chat = model.start_chat(history=recent_history)
-    
-    # 텔레그램 상단에 '입력 중...(typing)' 표시 띄우기
-    bot.send_chat_action(message.chat.id, 'typing')
-    
-    response = chat.send_message(user_input)
-    reply_text = response.text
+    try:
+        # 최신 구글 genai 클라이언트 대화 구성
+        contents = []
+        for h in memory["history"][-30:]:
+            role = "user" if h["role"] == "user" else "model"
+            contents.append(types.Content(
+                role=role,
+                parts=[types.Part.from_text(text=h["parts"][0])]
+            ))
+        contents.append(types.Content(
+            role="user",
+            parts=[types.Part.from_text(text=user_input)]
+        ))
+
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=contents,
+            config=types.GenerateContentConfig(
+                system_instruction=current_instruction,
+                temperature=0.7,
+            )
+        )
+        reply_text = response.text
+    except Exception as e:
+        reply_text = f"(시스템 오류 발생: {str(e)})"
     
     # 문장 길이에 따른 답장 딜레이
     delay_seconds = min(4.0, max(1.0, len(reply_text) / 30.0))
