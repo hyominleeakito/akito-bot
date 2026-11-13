@@ -89,9 +89,9 @@ def handle_message(message):
 
     current_instruction = get_system_instruction(time_str, holiday_note, memory["affection"])
     
-    # 최신 호환 모델 (gemini-2.0-flash) 적용
+    # 최신 호환 모델 (gemini-2.5-flash) 적용
     model = genai.GenerativeModel(
-        model_name="gemini-2.0-flash",
+        model_name="gemini-2.5-flash",
         system_instruction=current_instruction
     )
     
