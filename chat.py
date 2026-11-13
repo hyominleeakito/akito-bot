@@ -8,8 +8,7 @@ from google.genai import types
 
 # 1. 여기에 본인의 구글 API 키와 텔레그램 봇 토큰을 넣어주세요!
 GOOGLE_API_KEY = "AQ.Ab8RN6JymmKOZxpLyA4aT2iIMdHCkQldS1trtTcb-CYMgMeoBg"
-TELEGRAM_TOKEN = "8805582307:AAFJzETKsE32VRWY1r-yrD1BI7PCVZ95iKY
-"
+TELEGRAM_TOKEN = "8805582307:AAFJzETKsE32VRWY1r-yrD1BI7PCVZ95iKY"
 
 client = genai.Client(api_key=GOOGLE_API_KEY)
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
