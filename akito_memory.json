@@ -1,5 +1,5 @@
 {
-  "affection": 12,
+  "affection": 22,
   "history": [
     {
       "role": "user",
@@ -11,6 +11,66 @@
       "role": "model",
       "parts": [
         "(시스템 오류 발생: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://aistudio.google.com/docs/get-started).', 'status': 'NOT_FOUND'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "아키토?"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 오류 발생: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "뭐해?"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 오류 발생: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "자고 있는걸려나"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 오류 발생: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "좋아해"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "…は？ 寝てねえよ。練習終わってスマホ見たら急になんだよそれ。\n…하? 안 자거든. 연습 끝나고 폰 봤더니 갑자기 뭔 소리야 그건.\n\n変な冗談言ってねえで、ちゃんと飯食ったのかよ、お前。\n이상한 농담 하지 말고, 밥은 제대로 챙겨 먹었냐, 너."
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "하도 답장이 없길래 장난 좀 쳐봤지!"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "(시스템 오류 발생: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}})"
       ]
     }
   ]
