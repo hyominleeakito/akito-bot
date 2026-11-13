@@ -89,9 +89,9 @@ def handle_message(message):
 
     current_instruction = get_system_instruction(time_str, holiday_note, memory["affection"])
     
-    # 모델 호출 명칭 오류 원천 차단형 설정
+    # 구버전 라이브러리 완벽 호환 모델 호출 방식
     model = genai.GenerativeModel(
-        model_name="gemini-1.5-flash",
+        model_name="gemini-pro",
         system_instruction=current_instruction
     )
     
