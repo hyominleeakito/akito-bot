@@ -98,10 +98,6 @@ def handle_message(message):
             # 최신 구글 genai 클라이언트 대화 구성
             contents = []
             for h in memory["history"][-30:]:
-try:
-            # 최신 구글 genai 클라이언트 대화 구성
-            contents = []
-            for h in memory["history"][-30:]:
                 role = "user" if h["role"] == "user" else "model"
                 contents.append(types.Content(
                     role=role,
@@ -111,3 +107,43 @@ try:
                 role="user",
                 parts=[types.Part.from_text(text=user_input)]
             ))
+
+            response = client.models.generate_content(
+                model='gemini-3.8-flash',
+                contents=contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=current_instruction,
+                    temperature=0.7,
+                )
+            )
+            reply_text = response.text
+            break  # 성공하면 반복문 탈출
+            
+        except Exception as e:
+            if attempt < max_retries - 1:
+                time.sleep(2)  # 2초 대기 후 재시도
+                continue
+            else:
+                reply_text = f"(시스템 일시적 통신 불안정: {str(e)})"
+    
+    # 자연스러운 타이핑 속도(1.5초~3초 딜레이) 부여
+    delay_seconds = min(3.0, max(1.5, len(reply_text) / 40.0))
+    time.sleep(delay_seconds)
+    
+    # 텔레그램으로 답장 보내기
+    bot.reply_to(message, reply_text)
+    
+    # 새로운 대화 기억에 추가 및 파일로 저장
+    memory["history"].append({"role": "user", "parts": [user_input]})
+    memory["history"].append({"role": "model", "parts": [reply_text]})
+    save_memory(memory)
+
+print("📱 아키토 텔레그램 서버가 켜졌습니다! 스마트폰 텔레그램으로 말을 걸어보세요.")
+
+# 텔레그램 통신 중 인터넷이 흔들려도 봇이 죽지 않고 무한 재연결하도록 설정 보완
+while True:
+    try:
+        bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    except Exception as e:
+        print(f"⚠️ 연결 끊김 감지, 5초 후 재시도 중... (에러: {e})")
+        time.sleep(5)
